@@ -2,7 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>co.edu.eci.pdsw</groupId>
+<<<<<<< HEAD
     <artifactId>ConcurrentPrgExercises-Highlander-Prod-Cons</artifactId>
+=======
+    <artifactId>ConcurrentPrgExercises-GIT-MVN</artifactId>
+>>>>>>> 12f8b4a (first commit)
     <version>1.0</version>
     <packaging>jar</packaging>
     <properties>
@@ -10,4 +14,8 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
+<<<<<<< HEAD
 </project>
+=======
+</project>
+>>>>>>> 12f8b4a (first commit)

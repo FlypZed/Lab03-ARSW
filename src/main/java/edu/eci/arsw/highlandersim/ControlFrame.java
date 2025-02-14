@@ -20,7 +20,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Color;
+<<<<<<< HEAD
 import javax.swing.JScrollBar;
+=======
+>>>>>>> 12f8b4a (first commit)
 
 public class ControlFrame extends JFrame {
 
@@ -32,8 +35,11 @@ public class ControlFrame extends JFrame {
     private List<Immortal> immortals;
 
     private JTextArea output;
+<<<<<<< HEAD
     private JLabel statisticsLabel;
     private JScrollPane scrollPane;
+=======
+>>>>>>> 12f8b4a (first commit)
     private JTextField numOfImmortals;
 
     /**
@@ -96,9 +102,13 @@ public class ControlFrame extends JFrame {
                     sum += im.getHealth();
                 }
 
+<<<<<<< HEAD
                 statisticsLabel.setText("<html>"+immortals.toString()+"<br>Health sum:"+ sum);
                 
                 
+=======
+                output.setText(immortals.toString() + ". Sum:" + sum);
+>>>>>>> 12f8b4a (first commit)
 
             }
         });
@@ -129,30 +139,44 @@ public class ControlFrame extends JFrame {
         btnStop.setForeground(Color.RED);
         toolBar.add(btnStop);
 
+<<<<<<< HEAD
         scrollPane = new JScrollPane();
+=======
+        JScrollPane scrollPane = new JScrollPane();
+>>>>>>> 12f8b4a (first commit)
         contentPane.add(scrollPane, BorderLayout.CENTER);
 
         output = new JTextArea();
         output.setEditable(false);
         scrollPane.setViewportView(output);
+<<<<<<< HEAD
         
         
         statisticsLabel = new JLabel("Immortals total health:");
         contentPane.add(statisticsLabel, BorderLayout.SOUTH);
+=======
+>>>>>>> 12f8b4a (first commit)
 
     }
 
     public List<Immortal> setupInmortals() {
 
+<<<<<<< HEAD
         ImmortalUpdateReportCallback ucb=new TextAreaUpdateReportCallback(output,scrollPane);
         
+=======
+>>>>>>> 12f8b4a (first commit)
         try {
             int ni = Integer.parseInt(numOfImmortals.getText());
 
             List<Immortal> il = new LinkedList<Immortal>();
 
             for (int i = 0; i < ni; i++) {
+<<<<<<< HEAD
                 Immortal i1 = new Immortal("im" + i, il, DEFAULT_IMMORTAL_HEALTH, DEFAULT_DAMAGE_VALUE,ucb);
+=======
+                Immortal i1 = new Immortal("im" + i, il, DEFAULT_IMMORTAL_HEALTH, DEFAULT_DAMAGE_VALUE);
+>>>>>>> 12f8b4a (first commit)
                 il.add(i1);
             }
             return il;
@@ -164,6 +188,7 @@ public class ControlFrame extends JFrame {
     }
 
 }
+<<<<<<< HEAD
 
 class TextAreaUpdateReportCallback implements ImmortalUpdateReportCallback{
 
@@ -191,3 +216,5 @@ class TextAreaUpdateReportCallback implements ImmortalUpdateReportCallback{
     }
     
 }
+=======
+>>>>>>> 12f8b4a (first commit)
