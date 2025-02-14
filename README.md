@@ -1,5 +1,4 @@
 
-<<<<<<< HEAD
 ## Escuela Colombiana de Ingeniería
 ### Arquitecturas de Software – ARSW
 
@@ -23,25 +22,6 @@ Teniendo en cuenta los conceptos vistos de condición de carrera y sincronizaci�
 - Lo anterior, garantizando que no se den condiciones de carrera.
 
 ##### Parte III. – Avance para el martes, antes de clase.
-=======
-##Escuela Colombiana de Ingeniería
-###Arquitecturas de Software – ARSW
-
-
-####Ejercicio – programación concurrente, condiciones de carrera y sincronización de hilos. EJERCICIO INDIVIDUAL O EN PAREJAS.
-
-#####Parte I – Antes de terminar la clase.
-
-Control de hilos con wait/notify.
-
-1. Revise el programa “primos concurrentes”, dispuesto en el paquete edu.eci.arsw.primefinder. Este es un programa que calcula los números primos entre dos intervalos, distribuyendo la búsqueda de los mismos entre hilos independientes. Por ahora, tiene un único hilo de ejecución que busca los primos entre 0 y 30.000.000. Ejecútelo, abra el administrador de procesos del sistema operativo, y verifique cuantos núcleos son usados por el mismo.
-
-2. Modifique el programa para que, en lugar de resolver el problema con un solo hilo, lo haga con tres, donde cada uno de éstos hará la tarcera parte del problema original. Verifique nuevamente el funcionamiento, y nuevamente revise el uso de los núcleos del equipo.
-
-3. Lo que se le ha pedido es: debe modificar la aplicación de manera que cuando hayan transcurrido 5 segundos desde que se inició la ejecución, se detengan todos los hilos y se muestre el número de primos encontrados hasta el momento. Luego, se debe esperar a que el usuario presione ENTER para reanudar la ejecución de los mismo.
-
-#####Parte II. – Avance para el martes, antes de clase.
->>>>>>> 12f8b4a (first commit)
 
 Sincronización y Dead-Locks.
 
@@ -70,7 +50,6 @@ Sincronización y Dead-Locks.
 			…
 		}
 	}
-<<<<<<< HEAD
 	```
 
 7. Tras implementar su estrategia, ponga a correr su programa, y ponga atención a si éste se llega a detener. Si es así, use los programas jps y jstack para identificar por qué el programa se detuvo.
@@ -118,14 +97,3 @@ Sincronización y Dead-Locks.
 		-->
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br />Este contenido hace parte del curso Arquitecturas de Software del programa de Ingeniería de Sistemas de la Escuela Colombiana de Ingeniería, y está licenciado como <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.
-=======
-```
-
-7. Tras implementar su estrategia, ponga a correr su programa, y ponga atención a si éste se llega a detener. Si es así, use los programas jps y jstack para identificar por qué el programa se detuvo.
-
-8. Plantee una estrategia para corregir el problema antes identificado (puede revisar de nuevo las páginas 25 y 26 de la lectura).
-
-9. Una vez corregido el problema, rectifique que el programa siga funcionando de manera consistente cuando se ejecutan 100, 1000 o 10000 inmortales. Si en estos casos grandes se empieza a incumplir de nuevo el invariante, debe analizar lo realizado en el paso 4.
-
-10. Para finalizar, implemente la opción STOP.
->>>>>>> 12f8b4a (first commit)
