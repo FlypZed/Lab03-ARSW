@@ -5,32 +5,24 @@
  */
 package edu.eci.arst.concprg.prodcons;
 
+import edu.eci.arsw.highlandersim.BlacklistChecker;
+
+import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class StartProduction {
-    
-    
     public static void main(String[] args) {
+        List<String> blacklistedServers = List.of("server1.com", "server2.com", "malicious.net", "badhost.com");
+        BlacklistChecker checker = new BlacklistChecker(blacklistedServers);
 
-        int stocklimit = 5;
-        BlockingQueue<Integer> queue=new LinkedBlockingQueue<>(stocklimit);
-
-        Producer producer = new Producer(queue);
-        producer.start();
-        
-        //let the producer create products for 5 seconds (stock).
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(StartProduction.class.getName()).log(Level.SEVERE, null, ex);
+        String host = "badhost.com";
+        if (checker.isBlacklisted(host)) {
+            System.out.println("Host bloqueado.");
+        } else {
+            System.out.println("Host seguro.");
         }
-
-        Consumer consumer = new Consumer(queue);
-        consumer.start();
     }
-    
-
 }
