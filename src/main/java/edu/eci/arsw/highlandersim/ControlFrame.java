@@ -97,6 +97,14 @@ public class ControlFrame extends JFrame {
         JButton btnStop = new JButton("STOP");
         btnStop.setForeground(Color.RED);
         toolBar.add(btnStop);
+        btnStop.addActionListener(e -> {
+            if (immortals != null) {
+                for (Immortal im : immortals) {
+                    im.stopInmmortal();
+                    System.exit(0);
+                }
+            }
+        });
 
         scrollPane = new JScrollPane();
         contentPane.add(scrollPane, BorderLayout.CENTER);
