@@ -45,7 +45,6 @@ public class BlacklistChecker {
     }
 
     private boolean checkServer(String server, String host) {
-        // Simulación de la verificación en la lista negra
         return server.contains(host);
     }
 }
