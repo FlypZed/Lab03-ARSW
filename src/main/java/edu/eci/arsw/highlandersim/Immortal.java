@@ -3,68 +3,65 @@ package edu.eci.arsw.highlandersim;
 import java.util.List;
 import java.util.Random;
 
-public class Immortal extends Thread {
+class Immortal extends Thread {
 
-    private ImmortalUpdateReportCallback updateCallback=null;
-    
+    private ImmortalUpdateReportCallback updateCallback;
     private int health;
-    
-    private int defaultDamageValue;
-
+    private final int defaultDamageValue;
     private final List<Immortal> immortalsPopulation;
-
     private final String name;
-
     private final Random r = new Random(System.currentTimeMillis());
+    private final ControlFrame controller;
 
-
-    public Immortal(String name, List<Immortal> immortalsPopulation, int health, int defaultDamageValue, ImmortalUpdateReportCallback ucb) {
+    public Immortal(String name, List<Immortal> immortalsPopulation, int health, int defaultDamageValue,
+            ImmortalUpdateReportCallback ucb, ControlFrame controller) {
         super(name);
-        this.updateCallback=ucb;
+        this.updateCallback = ucb;
         this.name = name;
         this.immortalsPopulation = immortalsPopulation;
         this.health = health;
-        this.defaultDamageValue=defaultDamageValue;
+        this.defaultDamageValue = defaultDamageValue;
+        this.controller = controller;
     }
 
     public void run() {
-
+        Immortal opponent;
         while (true) {
-            Immortal im;
+            controller.waitIfPaused();
+
+            if (immortalsPopulation.size() <= 1)
+                break;
 
             int myIndex = immortalsPopulation.indexOf(this);
+            int opponentIndex = r.nextInt(immortalsPopulation.size());
 
-            int nextFighterIndex = r.nextInt(immortalsPopulation.size());
-
-            //avoid self-fight
-            if (nextFighterIndex == myIndex) {
-                nextFighterIndex = ((nextFighterIndex + 1) % immortalsPopulation.size());
+            if (opponentIndex == myIndex) {
+                opponentIndex = (opponentIndex + 1) % immortalsPopulation.size();
             }
 
-            im = immortalsPopulation.get(nextFighterIndex);
-
-            this.fight(im);
+            opponent = immortalsPopulation.get(opponentIndex);
+            fight(opponent);
 
             try {
                 Thread.sleep(1);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                Thread.currentThread().interrupt();
             }
-
         }
-
     }
 
     public void fight(Immortal i2) {
-
-        if (i2.getHealth() > 0) {
-            i2.changeHealth(i2.getHealth() - defaultDamageValue);
-            this.health += defaultDamageValue;
-            updateCallback.processReport("Fight: " + this + " vs " + i2+"\n");
-        } else {
-            updateCallback.processReport(this + " says:" + i2 + " is already dead!\n");
+        synchronized (this) {
+            synchronized (i2) {
+                if (i2.getHealth() > 0) {
+                    i2.changeHealth(i2.getHealth() - defaultDamageValue);
+                    this.health += defaultDamageValue;
+                    updateCallback.processReport("Fight: " + this + " vs " + i2 + "\n");
+                } else {
+                    updateCallback.processReport(this + " says: " + i2 + " is already dead!\n");
+                }
+            }
         }
-
     }
 
     public void changeHealth(int v) {
@@ -77,8 +74,6 @@ public class Immortal extends Thread {
 
     @Override
     public String toString() {
-
         return name + "[" + health + "]";
     }
-
 }
